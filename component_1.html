@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app='components'>
+  <head>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="js/component-controller.js"></script>
+    <link rel="stylesheet" href="component-style.css" type="text/css" media="screen" charset="utf-8">
+  </head>
+  <body>
+    <div ng-controller="ComponentController">
+      <p>Title: <input ng-model="title"/></p>
+      <p>Text: <textarea ng-model="text"></textarea></p>
+      <hr/>
+      <div class="zippy" zippy-title="Details: {{title}}...">
+        {{text}}
+      </div>
+    </div>
+  </body>
+</html>

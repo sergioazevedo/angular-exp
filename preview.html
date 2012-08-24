@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app='components'>
+  <head>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="js/showdown.js"></script>
+    <script src="js/preview-markdown.js"></script>
+  </head>
+  <body>
+    <markdown>
+Quick Example
+-------------
+
+```  js
+var Showdown = require('showdown');
+var converter = new Showdown.converter();
+
+converter.makeHtml('#hello markdown!');
+
+```
+
+What's it for?
+--------------
+
+Developers can use Showdown to:
+
+* Add in-browser preview to existing Markdown apps
+
+Showdown's output is (almost always) identical to
+markdown.pl's, so the server can reproduce exactly
+the output that the user saw.  (See below for
+exceptions.)
+    </markdown>
+    <markdown>
+Quick Example
+-------------
+
+```  js
+var Showdown = require('showdown');
+var converter = new Showdown.converter();
+
+converter.makeHtml('#hello markdown!');
+
+```
+
+What's it for?
+--------------
+
+Developers can use Showdown to:
+
+* Add in-browser preview to existing Markdown apps
+
+Showdown's output is (almost always) identical to
+markdown.pl's, so the server can reproduce exactly
+the output that the user saw.  (See below for
+exceptions.)
+  </markdown>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html ng-app="components">
+  <head>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="js/time-controller.js"></script>
+    <script src="js/time-comp.js"></script>
+  </head>
+  <body>
+    <div ng-controller="TimeController">
+      Date format: <input ng-model="format">
+      <hr/>
+      Current time is: <span wisen-actual-time="format"></span>
+    </div>
+  </body>
+</html>
