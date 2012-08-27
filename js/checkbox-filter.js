@@ -35,21 +35,31 @@ angular.module('components',[])
           };
 
           scope.markAll = function(){
-            if (scope.all)
-              scope.elementAllToggle.attr('checked','checked');
-            else  
+            if (scope.all){
+              angular.forEach(scope.elementOptions, function(el){
+                angular.element(el).removeAttr('checked');
+                var value = angular.element(el).val();
+                if ( _.indexOf(scope.filter_values, value) != -1){
+                  scope.filter_values = _.without(scope.filter_values, value);
+                };
+              });
+              scope.all = false;
+            }              
+            else{              
               scope.all = true;
+            }
           }
 
           scope.$watch('all', function(newValue, oldValue){            
-            if (newValue == true)
+            if (newValue == true){
               angular.forEach(scope.elementOptions, function(el){
                 angular.element(el).attr('checked', 'checked');
                 var value = angular.element(el).val();
                 if ( _.indexOf(scope.filter_values, value) == -1){
                   scope.filter_values.push(value);
                 };
-              });
+              });              
+            }
             scope.elementAllToggle.attr('checked', newValue);
           });
         };
