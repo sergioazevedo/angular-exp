@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app='components'>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="js/year-filter.js"></script>
+    <script src="js/underscore.js"></script>
+  </head>
+  <body>
+    <div class="filter_container" wisen-year-filter>
+      <div id="filter_Ano" class="filter_head ui-accordion-header ui-helper-reset ui-state-active ui-corner-top" role="tab" aria-expanded="true" aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-s"></span>
+        <span class="ico-expandf"></span>Ano
+      </div>
+      <div class="filter ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" role="tabpanel" style="display: block; ">
+        <div class="filter_box">
+          <select class="values" ng-model="year">
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+          </select>
+        </div>
+      </div>
+      Current Selected Year => {{year}}
+    </div>    
+  </body>
+</html>
