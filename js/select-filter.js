@@ -19,12 +19,10 @@ angular.module('components',[])
          
          scope.registerValue = function(){
            scope.filter_values = element.val();
+           console.log(scope.filter_field, scope.filter_values);
          };
          
        };
       }
     };
-    
-    
-    
   });
