@@ -12,16 +12,35 @@ angular.module('components',[])
           .success( function(data, status, headers, config){
             scope.data = data;
             scope.format = data.format;
-            var rootFieldName = _.first(data.format);
             scope.options = data.options;
+
+            var rootFieldName = _.first(data.format);
+            var parentFieldName = rootFieldName;
             var html = "";
+            
             angular.forEach(scope.format, function(field){
               if (field == rootFieldName){
-                html = html + '<select ng-model="'+ field +'" ng-changeng-options="c.name for c in options.'+field+'"></select>';              
+                html = html + '<select ng-model="'+ field +'" ng-options="c.name for c in options.'+field+'"></select>';
               }
               else{
                 html = html + '<label>'+field+'</label><br/>';
-                html = html + '<select ng-model="'+ field +'" ng-options="c.name group by c.group for c in options.'+field+'"></select>';              
+                html = html + '<select ng-model="'+ field +'" ng-options="c.name group by c.group for c in options.'+field+'"></select>';
+                scope.$watch( parentFieldName, function(newValue, oldValue){
+                  console.log(field + '- newValue', newValue);
+
+                  $http({ method: 'GET', url: field+'.json' })
+                    .success( function(data, status, headers, config){
+                      scope.options[field] = data;
+                      console.log('success', data);
+                      console.log(scope.options.field);
+                      console.log(scope.options.L6);
+                    })
+                    .error( function(data, status, headers, config){
+                      if (console) console.log("status", status);
+                    });
+                    
+                } );
+                parentFieldName = field;
               }
             });
             
