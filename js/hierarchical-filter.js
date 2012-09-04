@@ -1,6 +1,16 @@
 angular.module('components',[])
   .directive('wisenHierachicalFilter', [ '$timeout', '$http', '$compile', function($timeout, $http, $compile){
     
+    function buildRootSelectHtml(field){
+      return '<select ng-model="'+ field +'" ng-options="c.name for c in options.'+field+'"></select>';
+    }
+    
+    function buildChildSelectHtml(field){
+      var html = '<label>'+field+'</label><br/>';
+      html = html + '<select ng-model="'+ field +'" ng-options="c.name group by c.group for c in options.'+field+'"></select>';
+      return html;
+    }
+        
     return{
       restrict : 'E',
       priority: 1000,
@@ -20,24 +30,21 @@ angular.module('components',[])
             
             angular.forEach(scope.format, function(field){
               if (field == rootFieldName){
-                html = html + '<select ng-model="'+ field +'" ng-options="c.name for c in options.'+field+'"></select>';
+                html = buildRootSelectHtml(field);
               }
               else{
-                html = html + '<label>'+field+'</label><br/>';
-                html = html + '<select ng-model="'+ field +'" ng-options="c.name group by c.group for c in options.'+field+'"></select>';
+                html = html + buildChildSelectHtml(field);
+                                
                 scope.$watch( parentFieldName, function(newValue, oldValue){
-                  console.log(field + '- newValue', newValue);
-
-                  $http({ method: 'GET', url: field+'.json' })
-                    .success( function(data, status, headers, config){
-                      scope.options[field] = data;
-                      console.log('success', data);
-                      console.log(scope.options.field);
-                      console.log(scope.options.L6);
-                    })
-                    .error( function(data, status, headers, config){
-                      if (console) console.log("status", status);
-                    });
+                  if (newValue !== oldValue){                    
+                    $http({ method: 'GET', url: field+'.json' })
+                      .success( function(data, status, headers, config){
+                        scope.options[field] = data;
+                      })
+                      .error( function(data, status, headers, config){
+                        if (console) console.log("status", status);
+                      });
+                  }
                     
                 } );
                 parentFieldName = field;
