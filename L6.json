@@ -1,5 +1,6 @@
 [
-  {"group": "FNS", "name": "X" },
-  {"group": "FNS", "name": "Y" },
-  {"group": "VALE", "name": "A" },
+  {"name":"DIER", "group": "COAL"},
+  {"name":"DICV", "group": "COAL"},
+  {"name":"A", "group": "FNS"},
+  {"name":"B", "group": "FNS"}
 ]

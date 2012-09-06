@@ -1,7 +1,7 @@
 {
-  "format": ["COMPANY_NAME", "L6"],
+  "format": ["BUSSINESS", "L6", "L5"],
+  "baseUrl":  "",
   "options": {
-    "COMPANY_NAME" : [{"name":"VALE"},{"name":"FNS"}],
-    "L6": []
+    "BUSSINESS" : [{"name":"COAL"},{"name":"FNS"}]
   }
 }
